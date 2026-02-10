@@ -1,0 +1,12 @@
+{
+  "domain": "akahu_to_budget",
+  "name": "Akahu to Actual Budget",
+  "version": "0.1.0",
+  "documentation": "https://github.com/archerdan/akahu_to_budget_ha",
+  "requirements": [
+    "requests"
+  ],
+  "dependencies": [],
+  "codeowners": ["@archerdan"],
+  "iot_class": "cloud_polling"
+}
