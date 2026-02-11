@@ -2,14 +2,19 @@ import os
 import subprocess
 from pathlib import Path
 
-def run_sync(hass):
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant
+
+from .const import CONF_AKAHU_TOKEN, CONF_ACTUAL_BUDGET_URL
+
+def run_sync(hass: HomeAssistant, entry: ConfigEntry):
     base_path = Path(__file__).parent
     upstream = base_path / "vendor" / "akahu_to_budget"
 
     env = os.environ.copy()
     env.update({
-        "AKAHU_TOKEN": hass.config.as_dict().get("akahu_token", ""),
-        "ACTUAL_BUDGET_URL": hass.config.as_dict().get("actual_budget_url", "")
+        "AKAHU_TOKEN": entry.data[CONF_AKAHU_TOKEN],
+        "ACTUAL_BUDGET_URL": entry.data[CONF_ACTUAL_BUDGET_URL],
     })
 
     subprocess.run(
